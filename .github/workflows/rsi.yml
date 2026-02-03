@@ -1,8 +1,9 @@
-name: Daily RSI Telegram Bot
+name: RSI Telegram Bot
 
 on:
   schedule:
-    - cron: "0 7 * * *"   # täglich 07:00 UTC (~8–9 Uhr DE)
+    - cron: "0 6 * * *"   # 08:00 DE (UTC+1)
+    - cron: "0 19 * * *"  # 20:00 DE (UTC+1)
   workflow_dispatch:
 
 jobs:
@@ -10,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -19,7 +19,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install yfinance requests
+        run: pip install yfinance pandas requests
 
       - name: Run RSI Bot
         env:
