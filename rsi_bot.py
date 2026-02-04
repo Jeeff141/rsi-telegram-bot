@@ -62,11 +62,15 @@ sp_rsi_w  = sp_w["RSI_W"].iloc[-1]
 sp["EMA50"]  = sp["Close"].ewm(span=50).mean()
 sp["EMA200"] = sp["Close"].ewm(span=200).mean()
 
-cond_rsi   = sp_rsi_d < 40
-cond_ema50 = sp["Close"].iloc[-1] < sp["EMA50"].iloc[-1]
-cond_ema200= sp["Close"].iloc[-1] < sp["EMA200"].iloc[-1]
+price_sp = sp["Close"].iloc[-1]
+ema50_sp = sp["EMA50"].iloc[-1]
+ema200_sp = sp["EMA200"].iloc[-1]
 
-dca_score = sum([cond_rsi, cond_ema50, cond_ema200])
+cond_rsi    = sp_rsi_d < 40
+cond_ema50  = price_sp < ema50_sp
+cond_ema200 = price_sp < ema200_sp
+
+dca_score = int(cond_rsi) + int(cond_ema50) + int(cond_ema200)
 
 if dca_score == 3:
     dca_signal = "🟢 STRONG BUY"
