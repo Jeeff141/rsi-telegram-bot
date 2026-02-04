@@ -2,8 +2,8 @@ name: RSI Telegram Bot
 
 on:
   schedule:
-    - cron: "0 6 * * *"   # 08:00 DE (UTC+1)
-    - cron: "0 19 * * *"  # 20:00 DE (UTC+1)
+    - cron: "0 6 * * *"   # 07:00 DE (UTC+1)
+    - cron: "0 19 * * *"  # 18:00 DE (UTC+1)
   workflow_dispatch:
 
 jobs:
