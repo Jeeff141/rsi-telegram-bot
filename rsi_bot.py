@@ -1,3 +1,16 @@
+import requests
+import os
+
+requests.post(
+    f"https://api.telegram.org/bot{os.getenv('BOT_TOKEN')}/sendMessage",
+    data={
+        "chat_id": os.getenv("CHAT_ID"),
+        "text": "🧪 TEST: Script wurde gestartet"
+    }
+)
+
+
+
 import yfinance as yf
 import pandas as pd
 import requests
